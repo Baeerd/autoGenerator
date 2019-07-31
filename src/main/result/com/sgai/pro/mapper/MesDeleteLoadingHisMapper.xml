@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sgai.pro.mapper.MesDeleteLoadingHisMapper" >
+
+    <resultMap id="BaseResultMap" type="com.sgai.pro.entity.MesDeleteLoadingHis" >
+        <id column="SID" property="sid" jdbcType="DECIMAL" />
+        <id column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+        <id column="CREATED_DT" property="createdDt" jdbcType="TIMESTAMP" />
+        <id column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+        <id column="UPDATED_DT" property="updatedDt" jdbcType="TIMESTAMP" />
+        <id column="VERSION" property="version" jdbcType="DECIMAL" />
+        <id column="PLAN_NO" property="planNo" jdbcType="VARCHAR" />
+        <id column="IN_MAT_NO" property="inMatNo" jdbcType="VARCHAR" />
+        <id column="MAT_SEQ_NO" property="matSeqNo" jdbcType="DECIMAL" />
+        <id column="DELETE_TIME" property="deleteTime" jdbcType="TIMESTAMP" />
+        <id column="DELETE_TYPE" property="deleteType" jdbcType="VARCHAR" />
+        <id column="LOADING_FLAG" property="loadingFlag" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        SID,
+        CREATED_BY,
+        CREATED_DT,
+        UPDATED_BY,
+        UPDATED_DT,
+        VERSION,
+        PLAN_NO,
+        IN_MAT_NO,
+        MAT_SEQ_NO,
+        DELETE_TIME,
+        DELETE_TYPE,
+        LOADING_FLAG
+    </sql>
+
+    <select id="find" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List" />
+        from mes_delete_loading_his
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="sid != null" >
+                AND SID = #{sid,jdbcType=DECIMAL}
+            </if>
+            <if test="createdBy != null" >
+                AND CREATED_BY = #{createdBy,jdbcType=VARCHAR}
+            </if>
+            <if test="createdDt != null" >
+                AND CREATED_DT = #{createdDt,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updatedBy != null" >
+                AND UPDATED_BY = #{updatedBy,jdbcType=VARCHAR}
+            </if>
+            <if test="updatedDt != null" >
+                AND UPDATED_DT = #{updatedDt,jdbcType=TIMESTAMP}
+            </if>
+            <if test="version != null" >
+                AND VERSION = #{version,jdbcType=DECIMAL}
+            </if>
+            <if test="planNo != null" >
+                AND PLAN_NO = #{planNo,jdbcType=VARCHAR}
+            </if>
+            <if test="inMatNo != null" >
+                AND IN_MAT_NO = #{inMatNo,jdbcType=VARCHAR}
+            </if>
+            <if test="matSeqNo != null" >
+                AND MAT_SEQ_NO = #{matSeqNo,jdbcType=DECIMAL}
+            </if>
+            <if test="deleteTime != null" >
+                AND DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="deleteType != null" >
+                AND DELETE_TYPE = #{deleteType,jdbcType=VARCHAR}
+            </if>
+            <if test="loadingFlag != null" >
+                AND LOADING_FLAG = #{loadingFlag,jdbcType=VARCHAR}
+            </if>
+        </trim>
+        ORDER BY
+        <if test="order != null">
+        ${order}
+        </if>
+        <if test="order == null">
+            SID DESC
+        </if>
+    </select>
+
+    <delete id="delete" parameterType="com.sgai.pro.entity.MesDeleteLoadingHis" >
+        delete from mes_delete_loading_his where SID = #{sid,jdbcType=DECIMAL}
+    </delete>
+
+    <insert id="insert" parameterType="com.sgai.pro.entity.MesDeleteLoadingHis" >
+        <selectKey resultType="java.lang.Long" keyProperty="sid" order="BEFORE" >
+            SELECT SEQ_mes_delete_loading_his.nextval FROM DUAL
+        </selectKey>
+        insert into mes_delete_loading_his (
+           SID,
+           CREATED_BY,
+           CREATED_DT,
+           UPDATED_BY,
+           UPDATED_DT,
+           VERSION,
+           PLAN_NO,
+           IN_MAT_NO,
+           MAT_SEQ_NO,
+           DELETE_TIME,
+           DELETE_TYPE,
+           LOADING_FLAG
+        )
+        values (
+            #{SID,jdbcType=DECIMAL},
+            #{CREATED_BY,jdbcType=VARCHAR},
+            #{CREATED_DT,jdbcType=TIMESTAMP},
+            #{UPDATED_BY,jdbcType=VARCHAR},
+            #{UPDATED_DT,jdbcType=TIMESTAMP},
+            #{VERSION,jdbcType=DECIMAL},
+            #{PLAN_NO,jdbcType=VARCHAR},
+            #{IN_MAT_NO,jdbcType=VARCHAR},
+            #{MAT_SEQ_NO,jdbcType=DECIMAL},
+            #{DELETE_TIME,jdbcType=TIMESTAMP},
+            #{DELETE_TYPE,jdbcType=VARCHAR},
+            #{LOADING_FLAG,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.sgai.pro.entity.MesDeleteLoadingHis" >
+        update mes_delete_loading_his set version = version + 1,
+        <trim suffixOverrides=",">
+            <if test="warehouseId != null" >
+                SID = #{sid,jdbcType=DECIMAL},
+            </if>
+            <if test="warehouseId != null" >
+                CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="warehouseId != null" >
+                CREATED_DT = #{createdDt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="warehouseId != null" >
+                UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+            </if>
+            <if test="warehouseId != null" >
+                UPDATED_DT = #{updatedDt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="warehouseId != null" >
+                VERSION = #{version,jdbcType=DECIMAL},
+            </if>
+            <if test="warehouseId != null" >
+                PLAN_NO = #{planNo,jdbcType=VARCHAR},
+            </if>
+            <if test="warehouseId != null" >
+                IN_MAT_NO = #{inMatNo,jdbcType=VARCHAR},
+            </if>
+            <if test="warehouseId != null" >
+                MAT_SEQ_NO = #{matSeqNo,jdbcType=DECIMAL},
+            </if>
+            <if test="warehouseId != null" >
+                DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="warehouseId != null" >
+                DELETE_TYPE = #{deleteType,jdbcType=VARCHAR},
+            </if>
+            <if test="warehouseId != null" >
+                LOADING_FLAG = #{loadingFlag,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where SID = #{sid,jdbcType=DECIMAL}
+    </update>
+</mapper>
