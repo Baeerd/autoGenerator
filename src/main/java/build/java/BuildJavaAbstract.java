@@ -14,15 +14,15 @@ public abstract class BuildJavaAbstract implements BuildJava {
 
     protected Map<String, Object> dataMap = new HashMap<>();
 
-    protected String templateName;
+    protected String templateName;// 模板名称
 
-    protected String generateFileName;
+    protected String generateFileName;// 生成文件的名称
 
-    protected Map<String, String> propMap;
+    protected Map<String, String> propMap;// 配置文件属性对应的Map
 
-    protected List<Map<String, String>> dbaList;
+    protected List<Map<String, String>> dbaList;// 表字段集合，key 列名，value 列数据类型
 
-    protected String folder;
+    protected String folder;// 生成文件的路径
 
     public void init() {
         propMap = new HashMap<String, String>();
@@ -57,7 +57,6 @@ public abstract class BuildJavaAbstract implements BuildJava {
             }
             // 生成数据
             File docFile = new File(CLASS_PATH + "/" + folder + "/" + generateFileName);
-
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
             // 输出文件
             template.process(dataMap, out);
@@ -142,10 +141,10 @@ public abstract class BuildJavaAbstract implements BuildJava {
     public abstract void generateDataList();
 
     public void generate() {
-        this.init();
-        this.getDbaData();
-        this.generateDataList();
-        this.buildFile();
+        this.init();// 初始化配置信息
+        this.getDbaData();// 获取数据库表字段信息
+        this.generateDataList();// 生成模板所需数据
+        this.buildFile();// 生成文件
     }
 
 }
