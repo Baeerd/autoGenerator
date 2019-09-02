@@ -16,6 +16,7 @@ public class GeneratorServiceImpl extends BuildJavaAbstract implements BuildJava
         dataMap.put("entityClass", propMap.get("package_entity") + "." + Util.DBNameToJavaName(propMap.get("tableName")));
         dataMap.put("entityName", Util.DBNameToJavaName(propMap.get("tableName")));
         dataMap.put("serviceName", Util.DBNameToJavaName(propMap.get("tableName"))+"Service");
+        dataMap.put("serviceClass", propMap.get("package_service") + "." + Util.DBNameToJavaName(propMap.get("tableName"))+"Service");
         dataMap.put("serviceImplName", Util.DBNameToJavaName(propMap.get("tableName"))+"ServiceImpl");
 
         // 生成目录
