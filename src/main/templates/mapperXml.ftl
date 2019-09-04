@@ -71,9 +71,11 @@
         update ${tableName} set version = version + 1,
         <trim suffixOverrides=",">
         <#list properlist as prop>
-            <if test="warehouseId != null" >
+            <#if (prop.fieldName != 'sid' && prop.fieldName != 'version')>
+            <if test="${prop.fieldName} != null" >
                 ${prop.dbaName} = <#noparse>#{</#noparse>${prop.fieldName},jdbcType=${prop.mapperType}},
             </if>
+            </#if>
         </#list>
         </trim>
         where SID = <#noparse>#{</#noparse>sid,jdbcType=DECIMAL}
