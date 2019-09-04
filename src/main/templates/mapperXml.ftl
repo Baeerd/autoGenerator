@@ -59,9 +59,9 @@
         values (
         <#list properlist as prop>
         <#if prop_has_next>
-            <#noparse>#{</#noparse>${prop.dbaName},jdbcType=${prop.mapperType}},
+            <#noparse>#{</#noparse>${prop.fieldName},jdbcType=${prop.mapperType}},
         <#else>
-            <#noparse>#{</#noparse>${prop.dbaName},jdbcType=${prop.mapperType}}
+            <#noparse>#{</#noparse>${prop.fieldName},jdbcType=${prop.mapperType}}
         </#if>
         </#list>
         )
