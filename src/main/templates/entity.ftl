@@ -1,6 +1,7 @@
 package ${package};
 
 import com.sgai.core.base.entity.AbstractEntity;
+import java.util.Date;
 
 public class ${class} extends AbstractEntity {
 
